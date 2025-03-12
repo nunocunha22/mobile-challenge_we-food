@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import React from "react";
+import { Card, CardContent } from "@mui/material";
 
 export default function RestaurantList() {
-    const [restaurants, setRestaurants] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
 
-    useEffect(() => {
+    const [restaurants, setRestaurants] = React.useState([]);
+    const [loading, setLoading] = React.useState(true);
+    const [error, setError] = React.useState(null);
+
+    React.useEffect(() => {
         fetch("https://api.wefood.dev/restaurants")
             .then(response => response.json())
             .then(data => {
@@ -13,7 +15,6 @@ export default function RestaurantList() {
                 setLoading(false);
             })
             .catch(error => {
-                console.error("Error fetching restaurants:", error);
                 setError(error);
                 setLoading(false);
             });
@@ -24,23 +25,23 @@ export default function RestaurantList() {
 
     return (
         <div>
-            <h1>Restaurants</h1>
-            <ul>
-                {restaurants.length > 0 ? (
-                    restaurants.map(restaurant => (
-                        <li key={restaurant._id}>
+            <h1>Restaurants List</h1>
+            <div className="restaurant-container">
+                <ul className="restaurant-list">
+                    {restaurants.length > 0 ? (restaurants.map(restaurant => (
+                        <li key={restaurant._id} className="restaurant-item" onClick={() => window.open(`/restaurant/${restaurant._id}`, "_blank")}>
+                            <div className="restaurant-card">
 
-                            <h3>{restaurant.name}</h3>
-                            <p>{restaurant.addressInfo?.address}</p>
-                            <p><strong>Contact:</strong> {restaurant.contacts?.phoneNumber}</p>
-                            <p><strong>Contact:</strong> {restaurant.contacts?.email}</p>
-                            <p><strong>City:</strong> {restaurant.city?.phoneNumber}</p>
+                                <h3>{restaurant.name}</h3>
+                                <img src={restaurant.image?.url || "./No_image_available.png"} alt="Restaurant" />
+                            </div>
                         </li>
                     ))
-                ) : (
-                    <p>No restaurants found.</p>
-                )}
-            </ul>
+                    ) : (
+                        <p>No restaurants found.</p>
+                    )}
+                </ul>
+            </div>
         </div>
     );
 }
