@@ -37,21 +37,23 @@ export default function RestaurantDetails() {
 
     return (
 
-        <div className="p-6">
+        <div>
             <h1>Restaurant Details</h1>
-            <Card>
-                <CardContent>
-                    <h3>{restaurant.name}</h3>
-                    <img src={restaurant.image?.url || "/No_image_available.png"} alt="Restaurant" />
-                    <p><strong>Address:</strong> {restaurant.addressInfo?.address}</p>
-                    <p><strong>Contact:</strong> {restaurant.contacts?.phoneNumber}</p>
-                    <p><strong>Email:</strong> {restaurant.contacts?.email}</p>
-                    <p><strong>Cuisines:</strong> {restaurant.cuisines?.map(cuisine => cuisine.name.en).join(", ") || "No cuisines availble to show."}</p>
-                    <div onClick={() => toggleFavorite(restaurant._id)} className="favorite-button">
-                        {favorites[restaurant._id] ? <FaHeart className="heart-icon" /> : <FaRegHeart className="heart-icon" />}
-                    </div>
-                </CardContent>
-            </Card>
+            <div className="align-center">
+                <Card>
+                    <CardContent>
+                        <h3>{restaurant.name}</h3>
+                        <img src={restaurant.image?.url || "/No_image_available.png"} alt="Restaurant" />
+                        <p><strong>Address:</strong> {restaurant.addressInfo?.address}</p>
+                        <p><strong>Contact:</strong> {restaurant.contacts?.phoneNumber}</p>
+                        <p><strong>Email:</strong> {restaurant.contacts?.email}</p>
+                        <p><strong>Cuisines:</strong> {restaurant.cuisines?.map(cuisine => cuisine.name.en).join(", ") || "No cuisines availble to show."}</p>
+                        <div onClick={() => toggleFavorite(restaurant._id)} className="favorite-button">
+                            {favorites[restaurant._id] ? <FaHeart className="heart-icon" /> : <FaRegHeart className="heart-icon" />}
+                        </div>
+                    </CardContent>
+                </Card>
+            </div>
         </div>
     );
 }

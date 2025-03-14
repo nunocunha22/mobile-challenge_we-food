@@ -29,14 +29,27 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
+/* SCROLLBAR */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 10px;
+}
 
-  to {
-    transform: rotate(360deg);
-  }
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 17, 255, 0.2);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 17, 255, 0.3);
+}
+
+::-webkit-scrollbar-track:hover {
+  background-color: rgba(0, 17, 255, 0.5);
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgba(0, 17, 255, 0.274);
 }
 
 ul {
@@ -94,10 +107,6 @@ ul {
   border-radius: 8px;
 }
 
-.loader {
-  height: 10px;
-}
-
 .favorite-button {
   text-align: end;
 }
@@ -124,7 +133,21 @@ ul {
 }
 
 /* MEDIA QUERIES */
+@media (max-width: 600px) {
+  .MuiPaper-root.MuiCard-root {
+    width: 100% !important;
+  }
+
+  .restaurant-item {
+    width: 100% !important;
+  }
+}
+
 @media (max-width: 820px) {
+  .MuiPaper-root.MuiCard-root {
+    width: 50dvw;
+  }
+
   .restaurant-container {
     overflow-x: hidden;
     overflow-y: auto;
@@ -144,4 +167,11 @@ ul {
   .restaurant-card {
     width: calc(100%-padding);
   }
+}
+
+/* USEFUL CLASSES */
+
+.align-center {
+  display: flex;
+  justify-content: center;
 }
